@@ -16,6 +16,9 @@ next();
 
 
 router.get('/me', auth, async (req, res) => {
+const delay = parseInt(req.query.delay) || 0;
+if (delay) await new Promise(r => setTimeout(r, delay));
+
 const db = await connect();
 const users = db.collection('users');
 const user = await users.findOne(
@@ -23,13 +26,15 @@ const user = await users.findOne(
 { projection: { passwordHash: 0 } }
 );
 
-
 const records = await db.collection('records').find({ owner: req.session.userId }).toArray();
 res.json({ user, records });
 });
 
 
 router.get('/', auth, async (req, res) => {
+const delay = parseInt(req.query.delay) || 0;
+if (delay) await new Promise(r => setTimeout(r, delay));
+
 const db = await connect();
 if (req.session.role !== 'Admin') return res.status(403).json({ error: 'Forbidden' });
 const users = await db.collection('users').find({}, { projection: { passwordHash: 0 } }).toArray();
