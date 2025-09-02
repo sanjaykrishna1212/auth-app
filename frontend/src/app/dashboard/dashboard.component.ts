@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
   user: any;
-  records: any[] = [];
+  records: any = [];
   isLoading = true;
   isRefreshing = false;
   delay = 0;

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './admin-users.component.css'
 })
 export class AdminUsersComponent implements OnInit {
-  users: any[] = [];
+  users: any = [];
   isLoading = true;
   isRefreshing = false;
   isAdding = false;
@@ -40,14 +40,12 @@ export class AdminUsersComponent implements OnInit {
   loadUsers() {
     this.isLoading = true;
     this.error = '';
-    
     this.userService.getAllUsers(this.delay).subscribe({
       next: (users) => {
         this.users = users;
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('Error loading users:', err);
         this.error = err.error?.error || 'Failed to load users';
         this.isLoading = false;
         if (err.status === 401) {

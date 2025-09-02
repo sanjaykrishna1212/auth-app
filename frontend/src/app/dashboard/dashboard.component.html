@@ -8,13 +8,11 @@
   </div>
 
   <div class="content">
-    <!-- Loading State -->
     <div *ngIf="isLoading" class="loading-container">
       <div class="spinner"></div>
       <p>Loading your data...</p>
     </div>
 
-    <!-- User Records Section -->
     <div *ngIf="!isLoading && user" class="section">
       <h3>Your Records</h3>
       <div class="records-controls">
@@ -57,7 +55,6 @@
       </div>
     </div>
 
-    <!-- Admin Section -->
     <div *ngIf="!isLoading && user?.role === 'Admin'" class="section admin-section">
       <h3>Admin Actions</h3>
       <button (click)="navigateToAdmin()" class="btn-admin">
