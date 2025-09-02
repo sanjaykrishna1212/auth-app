@@ -1,10 +1,17 @@
+////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose: Helps to add mock username and password in DB and perform crud operation
+//
+// Author: Sanjay
+////////////////////////////////////////////////////////////////////////////////////////////
+
 const express = require('express');
 const router = express.Router();
 const { connect } = require('../db');
 const bcrypt = require('bcrypt');
 
-
-async function auth(req, res, next) {
+//#region  CRUD Operations
+async function auth(req, res, next) 
+{
 const token = req.headers['x-auth-token'];
 if (!token) return res.status(401).json({ error: 'Missing token' });
 const db = await connect();
@@ -45,12 +52,8 @@ res.json(users);
 router.post('/', auth, async (req, res) => {
 const db = await connect();
 if (req.session.role !== 'Admin') return res.status(403).json({ error: 'Forbidden' });
-
-
 const { userId, name, password, role = 'General User' } = req.body;
 if (!userId || !password) return res.status(400).json({ error: 'userId and password required' });
-
-
 const passwordHash = await bcrypt.hash(password, 10);
 const users = db.collection('users');
 await users.insertOne({ userId, name, passwordHash, role });
@@ -68,3 +71,4 @@ res.json({ ok: true });
 
 
 module.exports = router;
+//#endregion
