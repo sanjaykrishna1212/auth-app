@@ -32,12 +32,12 @@ await users.insertMany([
 ]);
 
 await records.insertMany([
-{ owner: 'Mark', title: 'Mark', value: 10 },
-{ owner: 'Elon', title: 'Elon', value: 20 },
-{ owner: 'Jeff', title: 'Jeff', value: 5 },
-{ owner: 'Sam', title: 'Sam', value: 40 },
-{ owner: 'Sundar', title: 'Sundar', value: 50 },
-{ owner: 'Jack', title: 'Jack', value: 5 }
+{ owner: 'admin', title: 'Mark', value: 10 },
+{ owner: 'admin', title: 'Elon', value: 20 },
+{ owner: 'admin', title: 'Jeff', value: 5 },
+{ owner: 'admin', title: 'Sam', value: 40 },
+{ owner: 'admin', title: 'Sundar', value: 50 },
+{ owner: 'admin', title: 'Jack', value: 5 }
 ]);
 
 console.log('DB created');

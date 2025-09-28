@@ -19,7 +19,7 @@ let db;
 async function connect() {
 if (!db) {
 await client.connect();
-db = client.db(process.env.MONGO_DB_NAME || 'spa_app');
+db = client.db(process.env.MONGO_DB_NAME || 'auth_app');
 console.log('Connected to MongoDB');
 }
 return db;

@@ -19,6 +19,7 @@ export class AdminUsersComponent implements OnInit {
   isDeleting: string | null = null;
   delay = 0;
   error = '';
+  isEditing:boolean = false
   
   newUser = {
     userId: '',
@@ -97,6 +98,17 @@ export class AdminUsersComponent implements OnInit {
         }
       });
     }
+  }
+
+  edituser(){
+    this.isEditing = true
+
+  }
+
+  saveEdit(user:any){
+    console.log(user);
+    this.userService.editUser(user); 
+    this.isEditing = false;
   }
 
   navigateToDashboard() {

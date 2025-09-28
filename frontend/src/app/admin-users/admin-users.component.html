@@ -99,7 +99,7 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngIf="!isEditing">
             <tr *ngFor="let user of users">
               <td>{{user.userId}}</td>
               <td>{{user.name}}</td>
@@ -116,6 +116,38 @@
                 >
                   <span *ngIf="isDeleting === user.userId">Deleting...</span>
                   <span *ngIf="isDeleting !== user.userId">Delete</span>
+                </button >
+              
+                <button
+                  class="btn-delete"
+                  style="background-color:green;"
+                  (click)="edituser()"
+                >
+                  Edit
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="isEditing">
+            <tr *ngFor="let user of users">
+              <td>
+                <input type="text" [(ngModel)]="user.userId">
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="user.name">
+                </td>
+              <td>
+                <span class="role-badge" [class.admin]="user.role === 'Admin'">
+                  {{user.role}}
+                </span>
+              </td>
+              <td>
+             <button
+                  class="btn-delete"
+                  style="background-color:turquoise;"
+                   (click)="saveEdit(user)"
+                >
+                  Save
                 </button>
               </td>
             </tr>

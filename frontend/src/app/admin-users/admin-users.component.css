@@ -235,6 +235,7 @@
   cursor: pointer;
   font-size: 12px;
   transition: background-color 0.2s ease;
+  margin-right:5px;
 }
 
 .btn-delete:hover:not(:disabled) {
